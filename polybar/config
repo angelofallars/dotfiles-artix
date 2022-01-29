@@ -49,10 +49,10 @@ modules-center = treefetch-downloads
 
 [bar/center]
 inherit = base
-offset-x = 33.3%
+offset-x = 34.4%
 width = 400
 background = #00
-modules-center = mpd
+modules-left = mpd
 
 [bar/center-right]
 inherit = base
@@ -144,8 +144,14 @@ ramp-3 = 🌖
 ramp-4 = 🌕
 
 [module/treefetch-downloads]
-type = custom/text
-content = "🌲treefetch: 694 downloads"
+type = custom/script
+exec = python ~/.config/polybar/scripts/downloads.py angelofallars treefetch
+
+format = <label>
+label = %output% downloads
+format-prefix = "🌲treefetch: "
+format-prefix-foreground = ${color.green}
+format-prefix-font = 2
 
 [module/mpd]
 type = internal/mpd
