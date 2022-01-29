@@ -82,7 +82,7 @@ killall -9 picom sxhkd dunst xfce4-power-manager ksuperkey conky polybar
 polybar -r left &
 polybar center-left &
 polybar -r center &
-polybar -r tray &
+polybar -r center-tray &
 polybar -r center-right &
 polybar -r right &
 

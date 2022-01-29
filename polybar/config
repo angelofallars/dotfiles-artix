@@ -11,6 +11,8 @@ magenta = #d3869b
 cyan = #89b482
 white = #d4be98
 
+accent-color = ${self.green}
+
 green-light = #a9b665
 
 [base]
@@ -22,7 +24,6 @@ width = 220
 
 background = ${color.background}
 foreground = ${color.foreground}
-accent-color = ${color.green}
 
 font-0 = "JetBrainsMono Nerd Font Mono:style=Medium:size=10.5;3"
 font-1 = "JetBrainsMono Nerd Font Mono:style=Bold:size=10.5;3"
@@ -56,7 +57,7 @@ modules-left = mpd
 
 [bar/center-tray]
 inherit = base
-offset-x = 59.3%
+offset-x = 59.1%
 width = 150
 background = #00
 modules-center = none
@@ -97,12 +98,12 @@ ws-icon-default = 
 format = <label-state>
 
 label-focused = " %icon% "
-label-focused-background = ${color.green}
+label-focused-background = ${color.accent-color}
 label-focused-foreground = ${color.background}
 label-focused-font = 4
 
 label-occupied = " %icon% "
-label-occupied-foreground = ${color.green}
+label-occupied-foreground = ${color.accent-color}
 label-occupied-font = 4
 
 label-urgent = " %icon% "
@@ -158,7 +159,7 @@ exec = python ~/.config/polybar/scripts/downloads.py angelofallars treefetch
 format = <label>
 label = %output% downloads
 format-prefix = "🌲treefetch: "
-format-prefix-foreground = ${color.green}
+format-prefix-foreground = ${color.accent-color}
 format-prefix-font = 2
 
 [module/mpd]
@@ -170,7 +171,8 @@ format-online = <toggle> <label-time> <label-song>
 label-time = %elapsed%/%total%
 label-song = %title:0:32:...%
 
-label-time-foreground = ${color.green}
+label-time-foreground = ${color.accent-color}
+label-time-font = 2
 
 icon-play = ▶️
 icon-pause = ⏸
