@@ -30,11 +30,41 @@ font-2 = "Source Han Sans JP:style=Regular:size=13;3"
 font-3 = "Source Han Sans JP:style=Bold:size=13;3"
 font-4 = "Twemoji:scale=5;3"
 
+cursor-click = pointer
+cursor-scroll = pointer
+
+module-margin = 1
+
 [bar/left]
 inherit = base
-offset-x = 8
+offset-x = 12
 width = 210
-modules-left = bspwm
+modules-center = bspwm
+
+[bar/center-left]
+inherit = base
+offset-x = 16.9%
+width = 230
+modules-center = treefetch-downloads
+
+[bar/center]
+inherit = base
+offset-x = 33.3%
+width = 400
+background = #00
+modules-center = mpd
+
+[bar/center-right]
+inherit = base
+offset-x = 70.45%
+width = 160
+modules-center = backlight audio
+
+[bar/right]
+inherit = base
+offset-x = 82.8%
+width = 225
+modules-center = time
 
 [module/bspwm]
 type = internal/bspwm
@@ -78,6 +108,61 @@ label-empty-font = 3
 ; Separator in between workspaces
 label-separator = " "
 label-separator-background = ${color.background}
+
+[module/time]
+type = internal/date
+interval = 1
+time = "🕒 %I:%M %p | %a, %b %d"
+label = %time%
+
+[module/audio]
+type = internal/pulseaudio
+format-volume = <ramp-volume> <label-volume>
+
+label-muted = "🔇 ... "
+ramp-volume-0 = 🔈
+ramp-volume-1 = 🔉
+ramp-volume-2 = 🔊
+
+label-volume-minlen = 4
+label-volume-alignment = left
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+enable-scroll = true
+format = <ramp> <label>
+label = %percentage%%
+
+label-minlen = 4
+label-alignment = left
+
+ramp-0 = 🌑
+ramp-1 = 🌘
+ramp-2 = 🌗
+ramp-3 = 🌖
+ramp-4 = 🌕
+
+[module/treefetch-downloads]
+type = custom/text
+content = "🌲treefetch: 694 downloads"
+
+[module/mpd]
+type = internal/mpd
+interval = 1
+
+format-online = <toggle> <label-time> <label-song>
+
+label-time = %elapsed%/%total%
+label-song = %title:0:30:...%
+
+label-time-foreground = ${color.green}
+
+icon-play = ▶️
+icon-pause = ⏸
+
+icon-play-font = 5
+icon-pause-font = 5
 
 [module/none]
 type = custom/text
