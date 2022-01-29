@@ -1,0 +1,84 @@
+[color]
+
+background = #D7B18E
+foreground = #534035
+black = #3c3836
+red = #ea6962
+green = #6D7833
+yellow = #d8a657
+blue = #7daea3
+magenta = #d3869b
+cyan = #89b482
+white = #d4be98
+
+green-light = #a9b665
+
+[base]
+radius = 5
+height = 24
+offset-y = 4
+fixed-center = true
+width = 220
+
+background = ${color.background}
+foreground = ${color.foreground}
+accent-color = ${color.green}
+
+font-0 = "JetBrainsMono Nerd Font Mono:style=Medium:size=10.5;3"
+font-1 = "JetBrainsMono Nerd Font Mono:style=Bold:size=10.5;3"
+font-2 = "Source Han Sans JP:style=Regular:size=13;3"
+font-3 = "Source Han Sans JP:style=Bold:size=13;3"
+font-4 = "Twemoji:scale=5;3"
+
+[bar/left]
+inherit = base
+offset-x = 8
+width = 210
+modules-left = bspwm
+
+[module/bspwm]
+type = internal/bspwm
+
+format-padding = 1
+
+pin-workspaces = true
+inline-mode = false
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
+fuzzy-match = true
+
+ws-icon-0=1;一
+ws-icon-1=2;二
+ws-icon-2=3;三
+ws-icon-3=4;四
+ws-icon-4=5;五
+ws-icon-5=6;六
+ws-icon-default = 
+
+format = <label-state>
+
+label-focused = " %icon% "
+label-focused-background = ${color.green}
+label-focused-foreground = ${color.background}
+label-focused-font = 4
+
+label-occupied = " %icon% "
+label-occupied-foreground = ${color.green}
+label-occupied-font = 4
+
+label-urgent = " %icon% "
+label-urgent-background = ${color.background}
+label-urgent-font = 4
+
+label-empty = " %icon% "
+label-empty-foreground = ${color.foreground}
+label-empty-font = 3
+
+; Separator in between workspaces
+label-separator = " "
+label-separator-background = ${color.background}
+
+[module/none]
+type = custom/text
+content = " "
