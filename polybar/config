@@ -43,16 +43,24 @@ modules-center = bspwm
 
 [bar/center-left]
 inherit = base
-offset-x = 16.9%
+offset-x = 16.95%
 width = 230
 modules-center = treefetch-downloads
 
 [bar/center]
 inherit = base
-offset-x = 34.4%
-width = 400
+offset-x = 34.5%
+width = 440
 background = #00
 modules-left = mpd
+
+[bar/center-tray]
+inherit = base
+offset-x = 59.3%
+width = 150
+background = #00
+modules-center = none
+tray-position = right
 
 [bar/center-right]
 inherit = base
@@ -160,7 +168,7 @@ interval = 1
 format-online = <toggle> <label-time> <label-song>
 
 label-time = %elapsed%/%total%
-label-song = %title:0:30:...%
+label-song = %title:0:32:...%
 
 label-time-foreground = ${color.green}
 
