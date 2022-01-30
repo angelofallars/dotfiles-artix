@@ -77,7 +77,8 @@ for full_name in full_names:
                     #    asset['name'],
                     #))
             else:
-                print ("No data")
+                print ("...")
+                exit()
     except:
         pass
     print('%d' % total_count)

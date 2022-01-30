@@ -16,6 +16,7 @@ accent-color = ${self.green}
 green-light = #a9b665
 
 [base]
+wm-restack = bspwm
 radius = 5
 height = 24
 offset-y = 4
@@ -84,7 +85,6 @@ pin-workspaces = true
 inline-mode = false
 enable-click = true
 enable-scroll = true
-reverse-scroll = true
 fuzzy-match = true
 
 ws-icon-0=1;一
@@ -107,11 +107,10 @@ label-occupied-foreground = ${color.accent-color}
 label-occupied-font = 4
 
 label-urgent = " %icon% "
-label-urgent-background = ${color.background}
+label-urgent-foreground = ${color.red}
 label-urgent-font = 4
 
 label-empty = " %icon% "
-label-empty-foreground = ${color.foreground}
 label-empty-font = 3
 
 ; Separator in between workspaces
