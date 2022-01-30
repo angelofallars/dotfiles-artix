@@ -66,6 +66,18 @@ def clean_song_name(song: str) -> str:
     return "".join(song_list) + " "
 
 
+def format_song_name(client: MPDClient) -> str:
+    current_song_data: dict = client.currentsong()
+
+    song_name = clean_song_name(current_song_data["file"])
+    artist_name = current_song_data.get("artist")
+
+    if artist_name:
+        song_name += "- " + artist_name + "  "
+
+    return song_name
+
+
 def main():
     client = MPDClient()
     client.connect("localhost", 6600)
@@ -75,12 +87,11 @@ def main():
     # If not, play nothing
 
     if client.status()["state"] != "stop":
-        song_name = client.currentsong().get("file")
-
-        pretty_song_name = clean_song_name(song_name)
+        raw_song_name = client.currentsong().get("file")
+        pretty_song_name = format_song_name(client)
 
     else:
-        song_name = ""
+        raw_song_name = ""
         pretty_song_name = ""
 
     t = threading.Thread(target=scroll_song,
@@ -97,12 +108,13 @@ def main():
         client.idle("player")
         t.state = client.status()['state']
 
-        if song_name != client.currentsong().get("file"):
+        if raw_song_name != client.currentsong().get("file"):
             t.state = "stop"
 
             if client.status()["state"] != "stop":
-                song_name = client.currentsong()["file"]
-                pretty_song_name = clean_song_name(song_name)
+                raw_song_name = client.currentsong().get("file")
+                pretty_song_name = format_song_name(client)
+
                 t = threading.Thread(target=scroll_song,
                                      args=(pretty_song_name, MAX_LEN))
                 t.state = client.status()["state"]
@@ -110,7 +122,7 @@ def main():
 
             else:
                 print("", flush=True)
-                song_name = ""
+                raw_song_name = ""
 
 
 if __name__ == "__main__":
