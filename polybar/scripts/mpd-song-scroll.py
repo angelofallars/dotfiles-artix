@@ -22,10 +22,14 @@ def scroll_song(name: str, max_len: int):
 
     output = name[:max_len]
     print(output, flush=True)
-    sleep(SLEEP_INTERVAL)
+    sleep(SLEEP_INTERVAL * 2)
+
+    sleep_counter = 0
 
     while t.state != "stop":
         if t.state == "play":
+            sleep_counter = 0
+
             if i > len(name):
                 i = 1
 
@@ -38,6 +42,14 @@ def scroll_song(name: str, max_len: int):
 
             i += 1
             print(output, flush=True)
+
+        else:
+            sleep_counter += 1
+
+            # If paused for too long, reset the title position
+            if sleep_counter >= 30:
+                print(name[:max_len], flush=True)
+                i = 1
 
         sleep(SLEEP_INTERVAL)
 

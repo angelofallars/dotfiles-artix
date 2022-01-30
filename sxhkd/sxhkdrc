@@ -24,7 +24,11 @@ super + d
 
 # Music player
 super + 0
-    ~/projects/scripts/play-song.sh
+    ~/projects/scripts/play-song.sh Anime
+
+super + minus
+    ~/projects/scripts/play-song.sh KPOP
+
 
 # screenshot
 Pause
