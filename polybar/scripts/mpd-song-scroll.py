@@ -5,7 +5,7 @@ from time import sleep
 from sys import exit
 from mpd import MPDClient
 
-MAX_LEN = 32
+MAX_LEN = 36
 SLEEP_INTERVAL = 0.8
 
 
@@ -16,7 +16,7 @@ def scroll_song(name: str, max_len: int):
 
     # Exit if max_len is greater than song length ( no need to scroll)
     if max_len > len(name):
-        print(name)
+        print(name, flush=True)
         return
 
     while getattr(t, "do_run", True):
@@ -35,31 +35,51 @@ def scroll_song(name: str, max_len: int):
         sleep(SLEEP_INTERVAL)
 
 
-client = MPDClient()
-client.connect("localhost", 6600)
+# Clean a song name, removing directory names and file type
+def clean_song_name(song: str) -> str:
+    # Strip directory names
+    song = song.split("/")[-1]
 
-song_name = client.currentsong()['file']
+    # Strip file name
+    song_list = song.split(".")[:-1]
 
-# if len(song_name) > MAX_LEN:
-#     scroll_song(song_name, MAX_LEN)
-# else:
-#     print(song_name)
-#     return 0
+    #                           Add a space for formatting
+    return "".join(song_list) + " "
 
-# Open a thread to scroll through song name
-t = threading.Thread(target=scroll_song,
-                     args=(song_name, MAX_LEN))
-t.start()
 
-# Listen for player changes
-while True:
-    client.idle('player')
+def main():
+    client = MPDClient()
+    client.connect("localhost", 6600)
 
-    # Change the scrolling song when the mpd song changes
-    if client.currentsong()['file'] != song_name:
-        t.do_run = False
+    song_name = client.currentsong()['file']
+    formatted_song_name = clean_song_name(song_name)
 
-        song_name = client.currentsong()['file']
-        t = threading.Thread(target=scroll_song,
-                             args=(song_name, MAX_LEN))
-        t.start()
+    # if len(song_name) > MAX_LEN:
+    #     scroll_song(song_name, MAX_LEN)
+    # else:
+    #     print(song_name)
+    #     return 0
+
+    # Open a thread to scroll through song name
+    t = threading.Thread(target=scroll_song,
+                         args=(formatted_song_name, MAX_LEN))
+    t.start()
+
+    # Listen for player changes
+    while True:
+        client.idle('player')
+
+        # Change the scrolling song when the mpd song changes
+        if client.currentsong()['file'] != song_name:
+            t.do_run = False
+
+            song_name = client.currentsong()['file']
+            song_name = clean_song_name(song_name)
+
+            t = threading.Thread(target=scroll_song,
+                                 args=(song_name, MAX_LEN))
+            t.start()
+
+
+if __name__ == "__main__":
+    main()
