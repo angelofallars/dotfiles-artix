@@ -54,7 +54,12 @@ inherit = base
 offset-x = 34.5%
 width = 440
 background = #00
-modules-left = mpd
+modules-left = mpd mpd-scroll-song
+module-margin = 0
+
+scroll-up = mpc seek +3
+scroll-down = mpc seek -3
+click-left = bspc rule -a \* -o state=floating && alacritty --command 'ncmpcpp'
 
 [bar/center-tray]
 inherit = base
@@ -166,10 +171,9 @@ format-prefix-font = 2
 type = internal/mpd
 interval = 1
 
-format-online = <toggle> <label-time> <label-song>
+format-online = <toggle> <label-time>
 
-label-time = %elapsed%/%total%
-label-song = %title:0:32:...%
+label-time = "%elapsed%/%total% "
 
 label-time-foreground = ${color.accent-color}
 label-time-font = 2
@@ -179,6 +183,11 @@ icon-pause = ⏸
 
 icon-play-font = 5
 icon-pause-font = 5
+
+[module/mpd-scroll-song]
+type = custom/script
+exec = "~/.config/polybar/scripts/mpd-song-scroll.py"
+tail = true
 
 [module/none]
 type = custom/text
