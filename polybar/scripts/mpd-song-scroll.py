@@ -12,6 +12,7 @@ SLEEP_INTERVAL = 0.8
 # Scroll through a song's name left and right like a music player
 def scroll_song(name: str, max_len: int):
     t = threading.current_thread()
+    t.name = name
     i = 1
 
     # Exit if max_len is greater than song length ( no need to scroll)
@@ -21,9 +22,10 @@ def scroll_song(name: str, max_len: int):
 
     output = name[:max_len]
     print(output, flush=True)
+    sleep(SLEEP_INTERVAL)
 
-    while getattr(t, "do_run", True):
-        if getattr(t, "state", "None") == "play":
+    while t.state != "stop":
+        if t.state == "play":
             if i > len(name):
                 i = 1
 
@@ -56,29 +58,45 @@ def main():
     client = MPDClient()
     client.connect("localhost", 6600)
 
-    song_name = client.currentsong()['file']
-    formatted_song_name = clean_song_name(song_name)
+    # Check if a song is playing
+    # If so, play the scroll
+    # If not, play nothing
 
-    # Open a thread to scroll through song name
+    if client.status()["state"] != "stop":
+        song_name = client.currentsong().get("file")
+
+        pretty_song_name = clean_song_name(song_name)
+
+    else:
+        song_name = ""
+        pretty_song_name = ""
+
     t = threading.Thread(target=scroll_song,
-                         args=(formatted_song_name, MAX_LEN))
+                         args=(pretty_song_name, MAX_LEN))
+
+    t.state = client.status()["state"]
     t.start()
 
-    # Listen for player changes
+    # Afterwards, check constantly for mpd changes
+    # If song changes, change the song title
+    # If song stops, print a blank line
+
     while True:
+        client.idle("player")
         t.state = client.status()['state']
-        client.idle('player')
 
-        # Change the scrolling song when the mpd song changes
-        if client.currentsong()['file'] != song_name:
-            t.do_run = False
+        if song_name != client.currentsong().get("file"):
+            t.state = "stop"
 
-            song_name = client.currentsong()['file']
-            formatted_song_name = clean_song_name(song_name)
-
-            t = threading.Thread(target=scroll_song,
-                                 args=(formatted_song_name, MAX_LEN))
-            t.start()
+            if client.status()["state"] != "stop":
+                song_name = client.currentsong()["file"]
+                pretty_song_name = clean_song_name(song_name)
+                t = threading.Thread(target=scroll_song,
+                                     args=(pretty_song_name, MAX_LEN))
+                t.state = client.status()["state"]
+                t.start()
+            else:
+                print("", flush=True)
 
 
 if __name__ == "__main__":
