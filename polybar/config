@@ -52,7 +52,7 @@ modules-center = treefetch-downloads
 [bar/center]
 inherit = base
 offset-x = 34.5%
-width = 440
+width = 460
 background = #00
 modules-left = mpd mpd-scroll-song
 module-margin = 0

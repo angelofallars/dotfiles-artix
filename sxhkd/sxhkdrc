@@ -24,7 +24,7 @@ super + d
 
 # Music player
 super + 0
-    mpc ls Anime | dmenu_gruv -p "Play Music:" | mpc insert && mpc next
+    ~/projects/scripts/play-song.sh
 
 # screenshot
 Pause
@@ -58,13 +58,13 @@ ctrl + Home
     mpc next
 
 ctrl + Delete
-    mpc seekthrough -10
+    mpc seekthrough -8
 
 ctrl + shift + Delete
     mpc seek 0
 
 ctrl + End
-    mpc seekthrough +10
+    mpc seekthrough +8
 
 ctrl + Pause
     mpc toggle

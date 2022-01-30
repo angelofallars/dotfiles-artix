@@ -95,8 +95,10 @@ def main():
                                      args=(pretty_song_name, MAX_LEN))
                 t.state = client.status()["state"]
                 t.start()
+
             else:
                 print("", flush=True)
+                song_name = ""
 
 
 if __name__ == "__main__":
