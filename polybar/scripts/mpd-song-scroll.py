@@ -16,7 +16,7 @@ def scroll_song(name: str, max_len: int):
     i = 1
 
     # Exit if max_len is greater than song length ( no need to scroll)
-    if max_len > len(name):
+    if max_len > len(name.rstrip()):
         print(name, flush=True)
         return
 
