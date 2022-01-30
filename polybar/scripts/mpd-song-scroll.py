@@ -120,9 +120,9 @@ def main():
                 t.state = client.status()["state"]
                 t.start()
 
-            else:
-                print("", flush=True)
-                raw_song_name = ""
+        if client.status()["state"] == "stop":
+            print("", flush=True)
+            raw_song_name = ""
 
 
 if __name__ == "__main__":
