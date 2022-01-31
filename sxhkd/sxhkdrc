@@ -24,10 +24,10 @@ super + d
 
 # Music player
 super + 0
-    ~/projects/scripts/play-song.sh Anime
+    play-song.sh Anime
 
 super + minus
-    ~/projects/scripts/play-song.sh KPOP
+    play-song.sh KPOP
 
 
 # screenshot
@@ -72,6 +72,16 @@ ctrl + End
 
 ctrl + Pause
     mpc toggle
+
+# Remaps
+
+# # ` key
+# shift + Escape
+#     xdotool keyup Escape ; xdotool keyup shift ; xdotool key grave ; xdotool keydown shift
+# 
+# # ~ key
+# ctrl + Escape
+#     xdotool keyup Escape ; xdotool keyup shift ; xdotool keyup control ; xdotool key asciitilde ; xdotool keydown control
 
 #
 #

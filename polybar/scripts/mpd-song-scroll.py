@@ -22,7 +22,7 @@ def scroll_song(name: str, max_len: int):
 
     output = name[:max_len]
     print(output, flush=True)
-    sleep(SLEEP_INTERVAL * 2)
+    sleep(SLEEP_INTERVAL * 3)
 
     sleep_counter = 0
 
@@ -78,9 +78,13 @@ def format_song_name(client: MPDClient) -> str:
     return song_name
 
 
-def main():
+def main() -> int:
     client = MPDClient()
-    client.connect("localhost", 6600)
+
+    try:
+        client.connect("localhost", 6600)
+    except ConnectionRefusedError:
+        return 1
 
     # Check if a song is playing
     # If so, play the scroll
@@ -104,26 +108,30 @@ def main():
     # If song changes, change the song title
     # If song stops, print a blank line
 
-    while True:
-        client.idle("player")
-        t.state = client.status()['state']
+    try:
+        while True:
+            client.idle("player")
+            t.state = client.status()['state']
 
-        if raw_song_name != client.currentsong().get("file"):
-            t.state = "stop"
+            if raw_song_name != client.currentsong().get("file"):
+                t.state = "stop"
 
-            if client.status()["state"] != "stop":
-                raw_song_name = client.currentsong().get("file")
-                pretty_song_name = format_song_name(client)
+                if client.status()["state"] != "stop":
+                    raw_song_name = client.currentsong().get("file")
+                    pretty_song_name = format_song_name(client)
 
-                t = threading.Thread(target=scroll_song,
-                                     args=(pretty_song_name, MAX_LEN))
-                t.state = client.status()["state"]
-                t.start()
+                    t = threading.Thread(target=scroll_song,
+                                         args=(pretty_song_name, MAX_LEN))
+                    t.state = client.status()["state"]
+                    t.start()
 
-        if client.status()["state"] == "stop":
-            print("", flush=True)
-            raw_song_name = ""
+            if client.status()["state"] == "stop":
+                print("", flush=True)
+                raw_song_name = ""
+
+    except ConnectionError:
+        return 1
 
 
 if __name__ == "__main__":
-    main()
+    exit(main())
