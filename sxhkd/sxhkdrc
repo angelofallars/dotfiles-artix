@@ -23,7 +23,7 @@ super + d
 	dmenu_run_gruv
 
 # Book reader
-super + 0
+super + equal
     open_book
 
 # screenshot
@@ -69,14 +69,13 @@ ctrl + End
 ctrl + Pause
     mpc toggle
 
-ctrl + Prior
+super + 9
     play-from-playlist
 
-# Music player
-ctrl + Up
+super + 0
     play-song.sh
 
-ctrl + Next
+super + minus
     play-song.sh album
 
 # Remaps

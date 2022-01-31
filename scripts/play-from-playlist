@@ -31,6 +31,6 @@ then
     exit
 fi
 
-line_number=$(echo $song_to_play | grep -oP '\d+')
+line_number=$(echo $song_to_play | grep -oP '^\d+')
 
 mpc play $line_number
