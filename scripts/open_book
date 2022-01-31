@@ -1,0 +1,10 @@
+#!/bin/sh
+
+book=$(find ~/Documents/Books -type f | dmenu_gruv "Book Read")
+
+if [ $? != 0 ]
+then
+    exit
+fi
+
+zathura $book

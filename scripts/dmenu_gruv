@@ -1,5 +1,18 @@
-#!/bin/sh
+#!/bin/zsh
 
-dmenu -i -fn "JetBrains Mono Nerd Font-12" -l 20 \
-      -nb "#282828" -nf "#d4be98" \
-      -sb "#a9b665" -sf "#282828" \
+font="JetBrains Mono Nerd Font-12"
+normal_bg="#282828"
+normal_fg="#d4be98"
+special_bg="#a9b665"
+special_fg="#282828"
+
+if [ ! -z $1 ]
+then
+    dmenu -i -fn "$font" -l 20 \
+        -nb "$normal_bg" -nf "$normal_fg" \
+        -sb "$special_bg" -sf "$special_fg" -p "$1"
+else
+    dmenu -i -fn "$font" -l 20 \
+        -nb "$normal_bg" -nf "$normal_fg" \
+        -sb "$special_bg" -sf "$special_fg"
+fi
