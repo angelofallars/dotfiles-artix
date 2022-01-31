@@ -1,0 +1,5 @@
+#!/bin/sh
+
+dmenu -i -fn "JetBrains Mono Nerd Font-12" -l 20 \
+      -nb "#282828" -nf "#d4be98" \
+      -sb "#a9b665" -sf "#282828" \
