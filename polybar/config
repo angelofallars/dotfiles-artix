@@ -61,7 +61,7 @@ module-margin = 0
 
 scroll-up = mpc seek +3
 scroll-down = mpc seek -3
-click-left = bspc rule -a \* -o state=floating && alacritty --command 'ncmpcpp'
+click-left = bspc rule -a \* -o state=floating && alacritty --command ncmpcpp -s visualizer
 
 [bar/center-tray]
 inherit = base

@@ -22,8 +22,8 @@
 # The number of bars (0-200). 0 sets it to auto (fill up console).
 # Bars' width and space between bars in number of characters.
 ; bars = 0
-; bar_width = 2
-; bar_spacing = 1
+bar_width = 4
+bar_spacing = 1
 
 
 # Lower and higher cutoff frequencies for lowest and highest bars
@@ -31,7 +31,7 @@
 # Note: there is a minimum total bandwidth of 43Mhz x number of bars.
 # Cava will automatically increase the higher cutoff if a too low band is specified.
 ; lower_cutoff_freq = 50
-; higher_cutoff_freq = 10000
+higher_cutoff_freq = 5000
 
 
 # Seconds with no input before cava goes to sleep mode. Cava will not perform FFT or drawing and
@@ -115,22 +115,21 @@ source = auto
 # ncurses output method and a terminal that can change color definitions such as Gnome-terminal or rxvt.
 # if supported, ncurses mode will be forced on if user defined colors are used.
 # default is to keep current terminal color
-; background = default
+ background = default
 foreground = green
 
 # Gradient mode, only hex defined colors (and thereby ncurses mode) are supported,
 # background must also be defined in hex  or remain commented out. 1 = on, 0 = off.
 # You can define as many as 8 different colors. They range from bottom to top of screen
-gradient = 0
-gradient_count = 8
-gradient_color_1 = '#59cc33'
-gradient_color_2 = '#80cc33'
-gradient_color_3 = '#a6cc33'
-gradient_color_4 = '#cccc33'
-gradient_color_5 = '#cca633'
-gradient_color_6 = '#cc8033'
-gradient_color_7 = '#cc5933'
-gradient_color_8 = '#cc3333'
+gradient = 1
+gradient_count = 7
+gradient_color_1 = '#d3869b'
+gradient_color_2 = '#7daea3'
+gradient_color_3 = '#89b482'
+gradient_color_4 = '#a9b665'
+gradient_color_5 = '#e3a84e'
+gradient_color_6 = '#e78a4e'
+gradient_color_7 = '#ea6962'
 
 
 
@@ -138,11 +137,11 @@ gradient_color_8 = '#cc3333'
 
 # Percentage value for integral smoothing. Takes values from 0 - 100.
 # Higher values means smoother, but less precise. 0 to disable.
-; integral = 77
+integral = 60
 
 # Disables or enables the so-called "Monstercat smoothing" with or without "waves". Set to 0 to disable.
-; monstercat = 0
-; waves = 0
+monstercat = 1
+waves = 0
 
 # Set gravity percentage for "drop off". Higher values means bars will drop faster.
 # Accepts only non-negative values. 50 means half gravity, 200 means double. Set to 0 to disable "drop off".

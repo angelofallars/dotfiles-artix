@@ -54,12 +54,14 @@ with open(cava_conf, 'w') as cava_conf_file:
        f'bars={opts.bars}\n'
         '[input]\n'
         'method = pulse\n'
-        'source = alsa_output.pci-0000_00_1b.0.analog-stereo\n'
+        'source = auto\n'
         '[output]\n'
         'method=raw\n'
         'data_format=ascii\n'
        f'ascii_max_range={conf_ascii_max_range}\n'
-        'bar_delimiter=32'
+        'bar_delimiter=32\n'
+        '[smoothing]\n'
+        'integral=77\n'
         ''
         + conf_channels
     )

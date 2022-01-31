@@ -2,9 +2,8 @@
 first_tmux_session() {
     tmux \
     new-session -d -n "nvim" \
-        ~/.config/sxhkd/nvim-forever.sh ';' \
-    attach ';' \
-    new-window ~/.config/sxhkd/zsh-forever.sh
+        ~/.config/sxhkd/zsh-forever.sh ';' \
+    attach ';'
 }
 
 while true
