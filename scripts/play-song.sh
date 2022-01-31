@@ -1,6 +1,13 @@
 #!/bin/sh
 
-folder=$(mpc ls | dmenu_gruv "Select Album:")
+album_prompt="Select Album"
+
+if [ $1 = "album" ]
+then
+    album_prompt="Play Album"
+fi
+
+folder=$(mpc ls | dmenu_gruv "🎵 $album_prompt")
 if [ $? != 0 ]
 then
     exit
@@ -14,7 +21,7 @@ then
     exit 0
 fi
 
-song=$(mpc ls "$folder" | dmenu_gruv "Select Song:")
+song=$(mpc ls "$folder" | dmenu_gruv "🎵 Select Song")
 if [ $? != 0 ]
 then
     exit

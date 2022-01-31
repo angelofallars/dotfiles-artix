@@ -1,10 +1,10 @@
 #!/bin/sh
 
-book=$(find ~/Documents/Books -type f | dmenu_gruv "Book Read")
+book=$(ls ~/Documents/Books | dmenu_gruv "📚 Read a Book")
 
 if [ $? != 0 ]
 then
     exit
 fi
 
-zathura $book
+zathura ~/Documents/Books/$book

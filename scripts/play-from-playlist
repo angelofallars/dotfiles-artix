@@ -25,7 +25,7 @@ for ((i = 1; i < $lines + 1; i++)); do
     fi
 done
 
-song_to_play=$(echo $dmenu_in | dmenu_gruv "Playlist:")
+song_to_play=$(echo $dmenu_in | dmenu_gruv "⏯ Playlist")
 if [ $? != 0 ]
 then
     exit

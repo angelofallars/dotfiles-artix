@@ -20,7 +20,7 @@ super + alt + Return
 
 # Program launcher
 super + d
-	dmenu_run_gruv
+    rofi -show run
 
 # Book reader
 super + equal
