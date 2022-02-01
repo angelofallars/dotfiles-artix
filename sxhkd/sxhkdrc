@@ -61,7 +61,7 @@ ctrl + Delete
     mpc seekthrough -8
 
 ctrl + shift + Delete
-    mpc seek 0
+    mpc seek 0 && mpc play
 
 ctrl + End
     mpc seekthrough +8

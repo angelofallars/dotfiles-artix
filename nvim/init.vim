@@ -207,7 +207,7 @@ let g:airline_symbols.colnr = '::'
 let g:airline_symbols.maxlinenr = ''
 " Disable display of text encoding
 let g:airline_section_c = airline#section#create(['🍀 ', '%<', 'path', g:airline_symbols.space, 'readonly', 'coc_status', 'lsp_progress'])
-let g:airline_section_x = airline#section#create(['filetype', ' ', '🍎🍊🍋🍈🫐🍇'])
+let g:airline_section_x = airline#section#create(['filetype', ' ', '🌵💚'])
 let g:airline_section_y = ''
 let g:airline_section_z = airline#section#create(['linenr', '', 'maxlinenr', 'colnr'])
 

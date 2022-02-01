@@ -7,7 +7,7 @@ selected=$(\
 
            sed --regexp-extended "s/^\/home\/[^\/]+\///g" |
 
-           fzf --border=rounded --reverse --prompt="  ➡️  " --ansi \
+           fzf --border=rounded --reverse --prompt="  ➡️  " --ansi --cycle \
                --header="🚀 tmux-sessionizer" --header-first \
                --pointer="🔥" \
                --padding 1,0 --margin 0,2,1,2 \
