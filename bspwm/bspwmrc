@@ -73,12 +73,14 @@ for i in ${floats[@]}; do
 # Kill if already running
 killall -9 picom sxhkd dunst polybar
 
-polybar -r left &
-polybar center-left &
-polybar -r center &
-polybar -r center-tray &
-polybar -r center-right &
-polybar -r right &
+poly_cfg="$HOME/.config/polybar/config.ini"
+
+polybar -r --config=$poly_cfg left &
+polybar -r --config=$poly_cfg center-left &
+polybar -r --config=$poly_cfg center &
+polybar -r --config=$poly_cfg center-tray &
+polybar -r --config=$poly_cfg center-right &
+polybar -r --config=$poly_cfg right &
 
 # Launch notification daemon
 dunst \

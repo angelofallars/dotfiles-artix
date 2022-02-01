@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 
-selected=$(find ~/projects ~/study -mindepth 1 -maxdepth 1 -type d | fzf)
+selected=$(find ~/projects ~/study -mindepth 1 -maxdepth 1 -type d | \
+           fzf --border=rounded --reverse --prompt="> " --ansi \
+               --header="🚀 tmux-sessionizer" --header-first \
+               --pointer="👉" \
+               --padding 1,0 --margin 0,1 \
+               --color="prompt:blue,prompt:bold,border:green,border:dim" \
+               --preview='~/.local/bin/exa -1 --icons --git -T -L 2 \
+                          --group-directories-first -l --no-permissions \
+                          --no-user --no-filesize --changed --no-time {} ;\
+                          ' \
+               --preview-window=border-left,55%)
 selected_name=$(basename "$selected" | tr . _)
 
 if ! tmux has-session -t $selected_name 2> /dev/null; then
