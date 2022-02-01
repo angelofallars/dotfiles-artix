@@ -20,7 +20,7 @@ super + alt + Return
 
 # Program launcher
 super + d
-    rofi -show run
+    rofi -show run -p "💾 Run Program"
 
 # Book reader
 super + equal
