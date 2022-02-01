@@ -1,6 +1,4 @@
 call plug#begin()
-" Discord Rich Presence (The most important plugin)
-" Plug 'vimsence/vimsence'
 
 " LSP IDE features
 Plug 'neovim/nvim-lspconfig'
@@ -75,14 +73,6 @@ let g:gruvbox_material_better_performance = 1
 let g:gruvbox_material_transparent_background = 1
 
 colorscheme gruvbox-material
-
-" Vimsence (Discord Rich Presence) options
-" let g:vimsence_small_text = 'Neovim'
-" let g:vimsence_small_image = 'neovim'
-" let g:vimsence_editing_details = 'Editing: {}'
-" let g:vimsence_editing_state = 'Workspace: {}'
-" Rich presence text on large image
-" let g:presence_neovim_image_text   = "I use Neovim btw"
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
@@ -212,12 +202,16 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_powerline_fonts = 1
-let g:airline_symbols.linenr = '☰ '
+let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.colnr = '::'
 let g:airline_symbols.maxlinenr = ''
 " Disable display of text encoding
+let g:airline_section_c = airline#section#create(['🍀 ', '%<', 'path', g:airline_symbols.space, 'readonly', 'coc_status', 'lsp_progress'])
+let g:airline_section_x = airline#section#create(['filetype', ' ', '🍎🍊🍋🍈🫐🍇'])
 let g:airline_section_y = ''
-" let g:airline_section_z = airline#section#create_right(['linenr', 'maxlinenr'])
+let g:airline_section_z = airline#section#create(['linenr', '', 'maxlinenr', 'colnr'])
+
+let g:airline_highlighting_cache = 0
 
 " Do not draw separators for empty sections
 let g:airline_skip_empty_sections = 1
